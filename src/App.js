@@ -7,7 +7,7 @@ class App extends Component {
     persons: [
       { name: "Max", age: 29 },
       { name: "John", age: 26 },
-      { name: "Xiao", age: 231 },
+      { name: "Xiao", age: 23 },
     ],
   };
 
@@ -16,7 +16,7 @@ class App extends Component {
       persons: [
         { name: "Maximilian", age: 29 },
         { name: "Johnathan", age: 26 },
-        { name: "Xin-Xiao", age: 23 },
+        { name: "Xin-Xiao", age: 231 },
       ],
     });
   };
