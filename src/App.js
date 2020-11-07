@@ -10,6 +10,7 @@ class App extends Component {
       { name: "John", age: 26 },
       { name: "Xiao", age: 23 },
     ],
+    assignment1: ["PlayerOne", "PlayerTwo"],
   };
 
   switchNameHandler = (newName) => {
@@ -29,6 +30,12 @@ class App extends Component {
         { name: event.target.value, age: 26 },
         { name: "Xin-Xiao", age: 231 },
       ],
+    });
+  };
+
+  assignmentOneHandler = (event) => {
+    this.setState({
+      assignment1: [event.target.value, "PlayerTwo"],
     });
   };
 
@@ -66,8 +73,11 @@ class App extends Component {
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
         />
-        <UserOutput1 username="Player1" />
-        <UserOutput1 username="Player2" />
+        <UserOutput1
+          username={this.state.assignment1[0]}
+          changed={this.assignmentOneHandler}
+        />
+        <UserOutput1 username={this.state.assignment1[1]} />
       </div>
     );
   }

@@ -1,0 +1,9 @@
+.AssignementOne {
+    width: 30%;
+    border: 2px solid rgba(73, 100, 84, 0.521);
+    margin: 10px auto;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    background-color: rgba(159, 184, 161, 0.795);
+    text-align: center;
+}
