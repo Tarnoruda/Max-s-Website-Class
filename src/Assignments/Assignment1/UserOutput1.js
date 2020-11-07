@@ -1,10 +1,10 @@
 import React from "react";
 
-const userOutputAssignment1 = () => {
+const userOutputAssignment1 = (props) => {
   return (
     <div>
-      <p>Text</p>
-      <p>Text</p>
+      <p>Text from first assignment</p>
+      <p>Username: {props.username}</p>
     </div>
   );
 };

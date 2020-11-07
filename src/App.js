@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import UserOutput1 from "./Assignments/Assignment1";
+import UserOutput1 from "./Assignments/Assignment1/UserOutput1";
 
 class App extends Component {
   state = {
@@ -66,8 +66,8 @@ class App extends Component {
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
         />
-        <UserOutput1 />
-        <UserOutput1 />
+        <UserOutput1 username="Player1" />
+        <UserOutput1 username="Player2" />
       </div>
     );
   }
