@@ -11,6 +11,7 @@ class App extends Component {
       { name: "Xiao", age: 23 },
     ],
     assignment1: ["PlayerOne", "PlayerTwo"],
+    showPersons: false,
   };
 
   switchNameHandler = (newName) => {
@@ -39,6 +40,11 @@ class App extends Component {
     });
   };
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons: !doesShow });
+  };
+
   render() {
     const style = {
       backgroundColor: "white",
@@ -51,28 +57,30 @@ class App extends Component {
       <div className="App">
         <h1>I am an React App</h1>
         <p>This is really working</p>
-        <button
-          style={style}
-          onClick={() => this.switchNameHandler("Maximilian!")}
-        >
-          Switch Name
+        <button style={style} onClick={this.togglePersonsHandler}>
+          Toggle Persons
         </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, "Max!")}
-          changed={this.nameChangerHandler}
-        >
-          Hobbies: Books
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        />
+        {this.state.showPersons ? (
+          <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+            />
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+              click={this.switchNameHandler.bind(this, "Max!")}
+              changed={this.nameChangerHandler}
+            >
+              Hobbies: Books
+            </Person>
+            <Person
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}
+            />
+          </div>
+        ) : null}
+        <p>V Assignment One V</p>
         <UserOutput1
           username={this.state.assignment1[0]}
           changed={this.assignmentOneHandler}
