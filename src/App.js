@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
 import UserOutput1 from "./Assignments/Assignment1/UserOutput1";
-import person from "./Person/Person";
+import CharacterCount from "./Assignments/Assignment2/CharacterCounter";
 
 class App extends Component {
   state = {
@@ -16,6 +16,7 @@ class App extends Component {
       { id: "weqw", name: "PlayerTwo" },
     ],
     showPersons: false,
+    assignment2: { inputText: "", count: 0 },
   };
 
   nameChangerHandler = (event, id) => {
@@ -60,6 +61,21 @@ class App extends Component {
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow });
+  };
+
+  countingHandler = (event) => {
+    const inputText = event.target.value;
+    const count = inputText.length;
+    const output = { inputText, count };
+    this.setState({ assignment2: output });
+  };
+
+  deleteCharactersHandler = (charIndex) => {
+    //Bad practice-> const persons = this.state.persons;
+    //Good practice-> const persons = this.state.persons.sclice();
+    const characters = [...this.state.assignment1.inputText]; //modern good practice with spread operator
+    characters.splice(charIndex, 1);
+    this.setState({ inputText: characters });
   };
 
   render() {
@@ -114,8 +130,15 @@ class App extends Component {
           Toggle Persons
         </button>
         {persons}
-        <p>V Assignment One V</p>
+        <p>⬇️ Assignment One ⬇️</p>
         {assignmentOnePersons}
+        <p>⬇️ Assignment Two ⬇️</p>
+        <CharacterCount
+          change={(event) => this.countingHandler(event)}
+          value={this.state.assignment2.inputText}
+          count={this.state.assignment2.count}
+          click={() => this.deleteCharactersHandler}
+        />
       </div>
     );
   }
