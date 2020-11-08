@@ -15,14 +15,21 @@ class App extends Component {
     showPersons: false,
   };
 
-  nameChangerHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: "Maximilian", age: 29 },
-        { name: event.target.value, age: 26 },
-        { name: "Xin-Xiao", age: 231 },
-      ],
+  nameChangerHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex((p) => {
+      return p.id === id;
     });
+
+    const person = {
+      ...this.state.persons[personIndex],
+    };
+    // alternative to above spread operator solution -> const person = Object.assign({}, this.state.persons[personIndex])
+
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons: persons });
   };
 
   assignmentOneHandler = (event) => {
@@ -65,6 +72,7 @@ class App extends Component {
                 name={person.name}
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
+                changed={(event) => this.nameChangerHandler(event, person.id)}
               />
             );
           })}
