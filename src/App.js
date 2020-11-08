@@ -32,7 +32,9 @@ class App extends Component {
   };
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    //Bad practice-> const persons = this.state.persons;
+    //Good practice-> const persons = this.state.persons.sclice();
+    const persons = [...this.state.persons]; //modern good practice with spread operator
     persons.splice(personIndex, 1);
     this.setState({ persons: persons });
   };
