@@ -8,7 +8,7 @@ const userInputAssignment1 = (props) => {
     <input
       type="text"
       onChange={props.changed}
-      value={props.username}
+      value={props.name}
       style={borderStyle}
     />
   );

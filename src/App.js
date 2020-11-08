@@ -11,7 +11,10 @@ class App extends Component {
       { id: "sdad", name: "John", age: 26 },
       { id: "asda", name: "Xiao", age: 23 },
     ],
-    assignment1: ["PlayerOne", "PlayerTwo"],
+    assignment1: [
+      { id: "eqwe", name: "PlayerOne" },
+      { id: "weqw", name: "PlayerTwo" },
+    ],
     showPersons: false,
   };
 
@@ -32,10 +35,18 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
-  assignmentOneHandler = (event) => {
-    this.setState({
-      assignment1: [event.target.value, "PlayerTwo"],
+  assignmentOneHandler = (event, id) => {
+    const personIndex = this.state.assignment1.findIndex((p) => {
+      return p.id === id;
     });
+
+    const person = { ...this.state.assignment1[personIndex] };
+
+    person.name = event.target.value;
+    const persons = [...this.state.assignment1];
+    persons[personIndex] = person;
+
+    this.setState({ assignment1: persons });
   };
 
   deletePersonHandler = (personIndex) => {
@@ -65,6 +76,7 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
+          <p>Click on text in boxes to delete boxes</p>
           {this.state.persons.map((person, index) => {
             return (
               <Person
@@ -80,6 +92,20 @@ class App extends Component {
       );
     }
 
+    let assignmentOnePersons = (
+      <div>
+        {this.state.assignment1.map((person) => {
+          return (
+            <UserOutput1
+              key={person.id}
+              name={person.name}
+              changed={(event) => this.assignmentOneHandler(event, person.id)}
+            />
+          );
+        })}
+      </div>
+    );
+
     return (
       <div className="App">
         <h1>I am an React App</h1>
@@ -89,11 +115,7 @@ class App extends Component {
         </button>
         {persons}
         <p>V Assignment One V</p>
-        <UserOutput1
-          username={this.state.assignment1[0]}
-          changed={this.assignmentOneHandler}
-        />
-        <UserOutput1 username={this.state.assignment1[1]} />
+        {assignmentOnePersons}
       </div>
     );
   }
